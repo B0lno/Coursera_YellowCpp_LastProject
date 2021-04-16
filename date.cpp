@@ -39,6 +39,11 @@ bool operator<(const Date& lhs, const Date& rhs) {
       vector<int>{rhs.GetYear(), rhs.GetMonth(), rhs.GetDay()};
 }
 
+bool operator>(const Date& lhs, const Date& rhs) {
+  return vector<int>{lhs.GetYear(), lhs.GetMonth(), lhs.GetDay()} >
+      vector<int>{rhs.GetYear(), rhs.GetMonth(), rhs.GetDay()};
+}
+
 bool operator==(const Date& lhs, const Date& rhs) {
 	return lhs.GetYear()  == rhs.GetYear() &&
 				 lhs.GetMonth() == rhs.GetMonth() &&
@@ -47,6 +52,14 @@ bool operator==(const Date& lhs, const Date& rhs) {
 
 bool operator!=(const Date& lhs, const Date& rhs) {
 	return not (lhs == rhs);
+}
+
+bool operator>=(const Date& lhs, const Date& rhs) {
+	return lhs == rhs or lhs > rhs;
+}
+
+bool operator<=(const Date& lhs, const Date& rhs) {
+	return lhs == rhs or lhs < rhs;
 }
 
 // даты будут по умолчанию выводиться в нужном формате
