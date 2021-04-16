@@ -54,6 +54,8 @@ void Database::Last(const Date& date) const {
 
   if (storage.size() == 0 || (last_event_it == storage.begin()))
     cout << "No entries" << endl;
-  else
-    cout << *(--last_event_it)->second.rbegin() << endl;
+  else {
+    --last_event_it;
+    cout << last_event_it->first << " " << *last_event_it->second.rbegin() << endl;
+  }
 }
