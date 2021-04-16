@@ -11,27 +11,27 @@ int main() {
   try {
     Database db;
 
-    string command_line;
-    while (getline(cin, command_line)) {
-      stringstream ss(command_line);
+    
+    for (string line; getline(cin, line); ) {
+
+    	istringstream is(line);
 
       string command;
-      ss >> command;
-
+      is >> command;
       if (command == "Add") {
 
         string date_str, event;
-        ss >> date_str >> event;
+        is >> date_str >> event;
         const Date date = ParseDate(date_str);
         db.AddEvent(date, event);
 
       } else if (command == "Del") {
 
         string date_str;
-        ss >> date_str;
+        is >> date_str;
         string event;
-        if (!ss.eof()) {
-          ss >> event;
+        if (!is.eof()) {
+          is >> event;
         }
         const Date date = ParseDate(date_str);
         if (event.empty()) {
@@ -48,7 +48,7 @@ int main() {
       } else if (command == "Find") {
 
         string date_str;
-        ss >> date_str;
+        is >> date_str;
         const Date date = ParseDate(date_str);
         for (const string& event : db.Find(date)) {
           cout << event << endl;
@@ -57,10 +57,10 @@ int main() {
       } else if (command == "Last") {
 
       	string date_str;
-      	ss >> date_str;
+      	is >> date_str;
       	const Date date = ParseDate(date_str);
       	db.Last(date);
-      	
+
       } else if (command == "Print") {
 
         db.Print();
