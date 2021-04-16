@@ -1,5 +1,6 @@
 #include "database.h"
 #include "date.h"
+#include "event.h"
 
 #include <iostream>
 #include <sstream>
@@ -20,20 +21,22 @@ int main() {
       is >> command;
       if (command == "Add") {
 
+      	const auto date  = ParseDate(is);
+      	const auto event = ParseEvent(is); 
+/*
         string date_str, event;
         is >> date_str >> event;
         const Date date = ParseDate(date_str);
+        */
         db.AddEvent(date, event);
 
       } else if (command == "Del") {
 
-        string date_str;
-        is >> date_str;
         string event;
         if (!is.eof()) {
           is >> event;
         }
-        const Date date = ParseDate(date_str);
+        const Date date = ParseDate(is);
         if (event.empty()) {
           const int count = db.DeleteDate(date);
           cout << "Deleted " << count << " events" << endl;
@@ -47,19 +50,14 @@ int main() {
 
       } else if (command == "Find") {
 
-        string date_str;
-        is >> date_str;
-        const Date date = ParseDate(date_str);
+        const Date date = ParseDate(is);
         for (const string& event : db.Find(date)) {
           cout << event << endl;
         }
 
       } else if (command == "Last") {
 
-      	string date_str;
-      	is >> date_str;
-      	const Date date = ParseDate(date_str);
-      	db.Last(date);
+      	db.Last(ParseDate(is));
 
       } else if (command == "Print") {
 

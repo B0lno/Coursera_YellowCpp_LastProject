@@ -4,6 +4,7 @@
 #include <stdexcept>
 #include <vector>
 #include <ostream>
+#include <istream>
 #include <iomanip>
 
 using namespace std;
@@ -56,7 +57,10 @@ ostream& operator<<(ostream& stream, const Date& date) {
   return stream;
 }
 
-Date ParseDate(const string& date) {
+Date ParseDate(istream& is) {
+	string date;
+	is >> date;
+
   istringstream date_stream(date);
   bool ok = true;
 

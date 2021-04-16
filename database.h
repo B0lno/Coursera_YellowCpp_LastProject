@@ -23,3 +23,4 @@ private:
   std::map<Date, std::set<Event>> storage;
   size_t add_event_count;
 };
+

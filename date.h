@@ -1,6 +1,7 @@
 #pragma once 
 
 #include <ostream>
+#include <istream>
 #include <string>
 
 class Date {
@@ -26,4 +27,4 @@ bool operator!=(const Date& lhs, const Date& rhs);
 // даты будут по умолчанию выводиться в нужном формате
 std::ostream& operator<<(std::ostream& stream, const Date& date);
 
-Date ParseDate(const std::string& date);
+Date ParseDate(std::istream& is);

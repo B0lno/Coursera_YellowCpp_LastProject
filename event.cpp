@@ -1,6 +1,8 @@
 #include "event.h"
 
-std::string Event::GetEventName() const {
+using namespace std;
+
+string Event::GetEventName() const {
 	return event_name;
 }
 
@@ -16,18 +18,18 @@ bool operator==(const Event& lhs, const Event& rhs) {
 	return lhs.GetEventName() == rhs.GetEventName();
 }
 
-std::ostream& operator<<(std::ostream& stream, const Event& event) {
+ostream& operator<<(ostream& stream, const Event& event) {
 	stream << event.GetEventName();
 
 	return stream;
 }
 
-Event::Event(const std::string name, const size_t num) :
+Event::Event(const string name, const size_t num) :
 	event_name(name),
 	event_num(num)
 {}
 
-Event::Event(const std::string name) :
+Event::Event(const string name) :
 	event_name(name),
 	event_num(0)
 {}
@@ -36,3 +38,12 @@ Event::Event() :
 	event_name(""),
 	event_num(0)
 {}
+
+string ParseEvent(istream& stream) {
+	string ret;
+
+	stream.ignore(1);
+	getline(stream, ret);
+
+	return ret;
+}
