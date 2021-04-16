@@ -1,6 +1,7 @@
 #pragma once
 
 #include "date.h"
+#include "event.h"
 
 #include <string>
 #include <set>
@@ -16,7 +17,9 @@ public:
   std::set<std::string> Find(const Date& date) const;
 
   void Print() const;
+  void Last(const Date& date) const;
 
 private:
-  std::map<Date, std::set<std::string>> storage;
+  std::map<Date, std::set<Event>> storage;
+  size_t add_event_count;
 };

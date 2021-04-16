@@ -54,6 +54,13 @@ int main() {
           cout << event << endl;
         }
 
+      } else if (command == "Last") {
+
+      	string date_str;
+      	ss >> date_str;
+      	const Date date = ParseDate(date_str);
+      	db.Last(date);
+      	
       } else if (command == "Print") {
 
         db.Print();

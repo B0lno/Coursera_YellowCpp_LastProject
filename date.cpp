@@ -38,6 +38,16 @@ bool operator<(const Date& lhs, const Date& rhs) {
       vector<int>{rhs.GetYear(), rhs.GetMonth(), rhs.GetDay()};
 }
 
+bool operator==(const Date& lhs, const Date& rhs) {
+	return lhs.GetYear()  == rhs.GetYear() &&
+				 lhs.GetMonth() == rhs.GetMonth() &&
+				 lhs.GetDay()   == rhs.GetDay();
+}
+
+bool operator!=(const Date& lhs, const Date& rhs) {
+	return not (lhs == rhs);
+}
+
 // даты будут по умолчанию выводиться в нужном формате
 ostream& operator<<(ostream& stream, const Date& date) {
   stream << setw(4) << setfill('0') << date.GetYear() <<
