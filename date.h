@@ -1,14 +1,18 @@
-#pragma once
+#pragma once 
 
 #include <string>
+#include <stdexcept>
 
 class Date {
-public: 
-
-	Date(std::string new_date) :
-		date(new_date)
-	{}
+public:
+  // конструктор выбрасывает исключение, если его аргументы некорректны
+  Date(int new_year, int new_month, int new_day);
+  int GetYear() const;
+  int GetMonth() const;
+  int GetDay() const;
 
 private:
-	std::string date;
+  int year;
+  int month;
+  int day;
 };
