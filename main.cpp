@@ -23,11 +23,6 @@ int main() {
 
       	const auto date  = ParseDate(is);
       	const auto event = ParseEvent(is); 
-/*
-        string date_str, event;
-        is >> date_str >> event;
-        const Date date = ParseDate(date_str);
-        */
         db.AddEvent(date, event);
 
       } else if (command == "Del") {
@@ -57,7 +52,7 @@ int main() {
 
       } else if (command == "Last") {
 
-      	db.Last(ParseDate(is));
+      	cout << db.Last(ParseDate(is)) << endl;
 
       } else if (command == "Print") {
 

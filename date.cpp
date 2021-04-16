@@ -83,3 +83,12 @@ Date ParseDate(istream& is) {
   }
   return Date(year, month, day);
 }
+
+
+string to_string(const Date& date) {
+	ostringstream ret;
+
+	ret << date;
+
+	return ret.str();
+}

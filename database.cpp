@@ -49,13 +49,12 @@ void Database::Print() const {
   }
 }
 
-void Database::Last(const Date& date) const {
+string Database::Last(const Date& date) const {
   auto last_event_it = storage.upper_bound(date);
 
   if (storage.size() == 0 || (last_event_it == storage.begin()))
-    cout << "No entries" << endl;
-  else {
-    --last_event_it;
-    cout << last_event_it->first << " " << *last_event_it->second.rbegin() << endl;
-  }
+    return "No entries";
+
+  --last_event_it;
+  return to_string(last_event_it->first) + " " + (*last_event_it->second.rbegin()).GetEventName();
 }

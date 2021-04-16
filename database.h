@@ -17,7 +17,7 @@ public:
   std::set<std::string> Find(const Date& date) const;
 
   void Print() const;
-  void Last(const Date& date) const;
+  std::string Last(const Date& date) const;
 
 private:
   std::map<Date, std::set<Event>> storage;
