@@ -21,6 +21,7 @@ public:
 
 private:
   std::map<Date, std::set<Event>> storage;
+  std::set<std::pair<Date, std::string>> events_info;
   size_t add_event_count;
 };
 

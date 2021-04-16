@@ -7,13 +7,18 @@
 using namespace std;
 
 void Database::AddEvent(const Date& date, const string& event) {
+  if (events_info.count({date, event}))
+    return;
+
   storage[date].insert(Event(event, add_event_count));
+  events_info.insert({date, event});
   add_event_count++;
 }
 
 bool Database::DeleteEvent(const Date& date, const string& event) {
   if (storage.count(date) > 0 && storage[date].count(Event(event)) > 0) {
     storage[date].erase(Event(event));
+    events_info.erase({date, event});
     return true;
   }
   return false;
@@ -24,6 +29,10 @@ int Database::DeleteDate(const Date& date) {
     return 0;
   } else {
     const int event_count = storage[date].size();
+
+    for (auto it : storage[date])
+      events_info.erase({date, it.GetEventName()});
+    
     storage.erase(date);
     return event_count;
   }
