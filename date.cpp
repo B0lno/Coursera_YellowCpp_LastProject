@@ -2,6 +2,9 @@
 
 #include <string>
 #include <stdexcept>
+#include <vector>
+#include <ostream>
+#include <iomanip>
 
 using namespace std;
 
@@ -25,4 +28,20 @@ int Date::GetMonth() const {
 }
 int Date::GetDay() const {
   return day;
+}
+
+// определить сравнение для дат необходимо для использования их в качестве ключей словаря
+bool operator<(const Date& lhs, const Date& rhs) {
+  // воспользуемся тем фактом, что векторы уже можно сравнивать на <:
+  // создадим вектор из года, месяца и дня для каждой даты и сравним их
+  return vector<int>{lhs.GetYear(), lhs.GetMonth(), lhs.GetDay()} <
+      vector<int>{rhs.GetYear(), rhs.GetMonth(), rhs.GetDay()};
+}
+
+// даты будут по умолчанию выводиться в нужном формате
+ostream& operator<<(ostream& stream, const Date& date) {
+  stream << setw(4) << setfill('0') << date.GetYear() <<
+      "-" << setw(2) << setfill('0') << date.GetMonth() <<
+      "-" << setw(2) << setfill('0') << date.GetDay();
+  return stream;
 }
